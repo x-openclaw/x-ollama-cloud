@@ -1,0 +1,88 @@
+{
+  "id": "x-ollama-cloud",
+  "name": "X Ollama Cloud",
+  "description": "Ollama Cloud models through an AxonHub gateway (OpenAI format)",
+  "categories": [
+    "models"
+  ],
+  "activation": {
+    "onStartup": false
+  },
+  "enabledByDefault": true,
+  "providers": [
+    "x-ollama-cloud"
+  ],
+  "setup": {
+    "providers": [
+      {
+        "id": "x-ollama-cloud",
+        "envVars": [
+          "X_OLLAMA_CLOUD_API_KEY"
+        ]
+      }
+    ]
+  },
+  "modelCatalog": {
+    "discovery": {
+      "x-ollama-cloud": "refreshable"
+    }
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "x-ollama-cloud",
+      "method": "api-key",
+      "choiceId": "x-ollama-cloud-api-key",
+      "appGuidedSecret": true,
+      "choiceLabel": "Ollama Cloud API key",
+      "groupId": "x-ollama-cloud",
+      "groupLabel": "X Ollama Cloud",
+      "groupHint": "Key restricted to the Ollama Cloud channel",
+      "optionKey": "xOllamaCloudApiKey",
+      "cliFlag": "--x-ollama-cloud-api-key",
+      "cliOption": "--x-ollama-cloud-api-key <key>",
+      "cliDescription": "Ollama Cloud API key"
+    }
+  ],
+  "uiHints": {
+    "baseUrl": {
+      "label": "API address",
+      "placeholder": "https://axonhub.example.com/v1",
+      "help": "Overrides X_OLLAMA_CLOUD_BASE_URL"
+    },
+    "apiKey": {
+      "label": "API key",
+      "placeholder": "ah-...",
+      "sensitive": true,
+      "help": "Overrides the saved auth profile and X_OLLAMA_CLOUD_API_KEY"
+    },
+    "contextWindow": {
+      "label": "Context window",
+      "placeholder": "131072",
+      "help": "Empty: the value AxonHub reports. Overrides X_OLLAMA_CLOUD_CONTEXT_WINDOW"
+    },
+    "streaming": {
+      "label": "Streaming",
+      "help": "Off by default: AxonHub's Ollama Cloud channel returns 502 on streamed responses. Overrides X_OLLAMA_CLOUD_STREAMING"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "baseUrl": {
+        "type": "string"
+      },
+      "apiKey": {
+        "type": "string"
+      },
+      "contextWindow": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "streaming": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}
