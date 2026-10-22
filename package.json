@@ -1,6 +1,6 @@
 {
   "name": "x-ollama-cloud",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "OpenClaw provider plugin: Ollama Cloud models through an AxonHub gateway (OpenAI format)",
   "private": true,
   "type": "module",

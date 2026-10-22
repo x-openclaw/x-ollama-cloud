@@ -63,6 +63,10 @@
     "streaming": {
       "label": "Streaming",
       "help": "Off by default: AxonHub's Ollama Cloud channel returns 502 on streamed responses. Overrides X_OLLAMA_CLOUD_STREAMING"
+    },
+    "modelsDev": {
+      "label": "Limits from models.dev",
+      "help": "On by default: fills context window and output limits from models.dev for models AxonHub reports without them. Overrides X_OLLAMA_CLOUD_MODELS_DEV"
     }
   },
   "configSchema": {
@@ -82,6 +86,10 @@
       "streaming": {
         "type": "boolean",
         "default": false
+      },
+      "modelsDev": {
+        "type": "boolean",
+        "default": true
       }
     }
   }

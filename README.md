@@ -6,6 +6,7 @@ OpenClaw provider plugin: Ollama Cloud models through an AxonHub gateway (OpenAI
 - Models: every model the key can see (use a key restricted to the Ollama Cloud channel), discovered live from AxonHub's `/v1/models`. New models appear after a Refresh in the model picker, or once the 60 s discovery cache expires.
 - Embedding and other non-chat models are filtered out.
 - Adding a key never replaces the primary model chosen in the UI.
+- Context window and output limits come from AxonHub when it reports them, otherwise from [models.dev](https://models.dev) (effort variants such as `-high` use their base model's limits). A `contextWindow` setting overrides both. Models without a match keep OpenClaw's default.
 
 ## API address and key
 
@@ -17,6 +18,7 @@ Set them in the OpenClaw UI (**Plugins → X Ollama Cloud → Settings**) or wit
 | API key | `apiKey` | `X_OLLAMA_CLOUD_API_KEY` | API key |
 | Context window | `contextWindow` | `X_OLLAMA_CLOUD_CONTEXT_WINDOW` | optional, default: the value AxonHub reports |
 | Streaming | `streaming` | `X_OLLAMA_CLOUD_STREAMING` | `false` (default) |
+| Limits from models.dev | `modelsDev` | `X_OLLAMA_CLOUD_MODELS_DEV` | `true` (default) |
 
 The key can also be saved as an auth profile under **Settings → Model providers**, or with `openclaw models auth paste-api-key --provider x-ollama-cloud`. Order: UI `apiKey`, then the auth profile, then the env var.
 
